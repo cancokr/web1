@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문의하기</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .toggle-box {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        .toggle-box label {
+            font-weight: normal;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .response-list {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hamburger-menu" onclick="toggleMenu(event)">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <h1>문의하기</h1>
+        <ul class="menu" id="menu">
+            <li>CAN 소개</li>
+            <li>기술 소개</li>
+            <li>제품 목록</li>
+            <li>문의하기</li>
+        </ul>
+    </header>
+
+    <main>
+        <h2 style="text-align: center; margin-bottom: 20px;">문의하기</h2>
+        <form id="inquiry-form">
+            <div class="form-group">
+                <label for="product">제품 구분:</label>
+                <div class="toggle-box">
+                    <label><input type="checkbox" name="product" value="LCD"> LCD</label>
+                    <label><input type="checkbox" name="product" value="Touch"> Touch</label>
+                    <label><input type="checkbox" name="product" value="Cover Glass"> Cover Glass</label>
+                    <label><input type="checkbox" name="product" value="기타"> 기타</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="size">크기:</label>
+                <input type="text" id="size" name="size" placeholder="예: 10인치">
+            </div>
+            <div class="form-group">
+                <label for="usage">용도:</label>
+                <select id="usage" name="usage">
+                    <option value="자동차용">자동차용</option>
+                    <option value="산업용">산업용</option>
+                    <option value="소비자 가전">소비자 가전</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="spec">요구 사양 및 기능 설명:</label>
+                <textarea id="spec" name="spec" rows="4" placeholder="요구 사양을 입력해주세요."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="company">회사:</label>
+                <input type="text" id="company" name="company">
+            </div>
+            <div class="form-group">
+                <label for="name">이름:</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="contact">연락처:</label>
+                <input type="text" id="contact" name="contact" placeholder="예: 010-1234-5678">
+            </div>
+            <button type="button" onclick="handleSubmit()">완료</button>
+        </form>
+
+        <div class="response-list" id="response-list">
+            <h3>문의 내역</h3>
+            <ul id="response-items"></ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CAN. 모든 권리 보유.</p>
+    </footer>
+
+    <script>
+        function handleSubmit() {
+            const form = document.getElementById('inquiry-form');
+            const responseList = document.getElementById('response-items');
+
+            const products = Array.from(form.querySelectorAll('input[name="product"]:checked')).map(el => el.value);
+            const size = form.size.value;
+            const usage = form.usage.value;
+            const spec = form.spec.value;
+            const company = form.company.value;
+            const name = form.name.value;
+            const contact = form.contact.value;
+
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+                <strong>제품 구분:</strong> ${products.join(', ')}<br>
+                <strong>크기:</strong> ${size}<br>
+                <strong>용도:</strong> ${usage}<br>
+                <strong>요구 사양:</strong> ${spec}<br>
+                <strong>회사:</strong> ${company}<br>
+                <strong>이름:</strong> ${name}<br>
+                <strong>연락처:</strong> ${contact}<br>
+            `;
+            responseList.appendChild(listItem);
+
+            form.reset();
+        }
+
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('menu');
+            const hamburger = document.querySelector('.hamburger-menu');
+            if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+                menu.classList.remove('menu-active');
+            }
+        });
+
+        function toggleMenu(event) {
+            event.stopPropagation(); // Prevent event from propagating to the document
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('menu-active');
+        }
+    </script>
+</body>
+</html>

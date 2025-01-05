@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAN 기술 소개</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="hamburger-menu" onclick="toggleMenu(event)">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <h1>웹사이트 헤더</h1>
+        <ul class="menu" id="menu">
+            <li>CAN 소개</li>
+            <li>기술 소개</li>
+            <li>제품 목록</li>
+            <li>문의하기</li>
+        </ul>
+    </header>
+
+    <main>
+        <h2 style="text-align: center; margin-bottom: 20px;">CAN 기술 소개</h2>
+        <p style="text-align: center; font-size: 1.2em; line-height: 1.8; margin-bottom: 30px;">
+            CAN은 혁신적인 기술 개발과 첨단 솔루션을 통해 고객에게 차별화된 가치를 제공합니다.
+        </p>
+        <section style="margin-bottom: 40px;">
+            <h3 style="color: #444; border-bottom: 2px solid #ccc; padding-bottom: 10px; margin-bottom: 20px;">핵심 기술</h3>
+            <ul style="list-style: disc; padding-left: 20px; line-height: 1.8;">
+                <li>고성능 디스플레이 설계 및 제조 기술</li>
+                <li>자동차 디스플레이를 위한 강화 유리 솔루션</li>
+                <li>정밀 터치 센싱 및 제어 기술</li>
+            </ul>
+        </section>
+        <section style="margin-bottom: 40px;">
+            <h3 style="color: #444; border-bottom: 2px solid #ccc; padding-bottom: 10px; margin-bottom: 20px;">기술 강점</h3>
+            <p style="line-height: 1.8;">
+                CAN의 기술은 고품질과 신뢰성을 바탕으로 고객의 다양한 요구를 충족합니다. 특히, 자동차 산업에서 요구되는 내구성과 정밀도를 보장하는 솔루션을 제공합니다.
+            </p>
+        </section>
+        <section>
+            <h3 style="color: #444; border-bottom: 2px solid #ccc; padding-bottom: 10px; margin-bottom: 20px;">연구개발 및 혁신</h3>
+            <p style="line-height: 1.8;">
+                CAN은 지속적인 연구개발(R&D)을 통해 기술 혁신을 선도하며, 글로벌 경쟁력을 갖춘 제품과 서비스를 제공합니다. 
+                고객과의 협력을 통해 새로운 기술을 개발하고 이를 상용화하여 시장을 선도합니다.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CAN. 모든 권리 보유.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('menu');
+            const hamburger = document.querySelector('.hamburger-menu');
+            if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+                menu.classList.remove('menu-active');
+            }
+        });
+
+        function toggleMenu(event) {
+            event.stopPropagation(); // Prevent event from propagating to the document
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('menu-active');
+        }
+    </script>
+</body>
+</html>

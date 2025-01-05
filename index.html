@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAN - Share Your Dreams</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hamburger-menu {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .hamburger-menu:hover {
+            transform: scale(1.1);
+        }
+
+        .hamburger-menu span {
+            width: 30px;
+            height: 4px;
+            background-color: white;
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: background-color 0.3s;
+        }
+
+        .hamburger-menu:hover span {
+            background-color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="menu" id="menu">
+            <li><a href="index.html">첫 페이지</a></li>
+            <li><a href="about.html">회사 소개</a></li>
+            <li><a href="tech.html">기술 소개</a></li>
+            <li><a href="contact.html">문의하기</a></li>
+        </ul>
+    </header>
+
+    <main>
+        <img src="image.png" alt="CAN 로고">
+        <h1>CAN</h1>
+        <p>Share your dreams</p>
+        <a href="about.html" class="button">회사 소개</a>
+        <a href="tech.html" class="button">기술 소개</a>
+        <a href="contact.html" class="button">문의하기</a>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('menu-active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('menu');
+            const hamburger = document.querySelector('.hamburger-menu');
+
+            if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+                menu.classList.remove('menu-active');
+            }
+        });
+    </script>
+</body>
+</html>
